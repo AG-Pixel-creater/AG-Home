@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AG | Products</title>
+    <link rel="stylesheet" href="css/styles_1.css">
+    <link rel="icon" href="https://raw.githubusercontent.com/AG-Pixel-creater/Images/refs/heads/main/Screenshot_2025-04-03_063111-removebg-preview.png" type="logo.png">
+</head>
+<body data-theme="dark">
+    <div class="background-content">
+        <br>
+        <br> 
+        <header>
+            <div>
+                <h1>Our Products</h1>
+            </div>
+            <div class="header-controls" align="right">
+                <button id="settingsBtn" class="settings-btn" title="Settings">
+                    <svg width="20" height="20" viewBox="0 0 20 20">
+                        <path fill="currentColor" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"/>
+                    </svg>
+                </button>
+                <div id="userDisplay" class="user-display"></div>
+                <button id="logoutBtn" class="logout-btn">Logout</button>
+            </div>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li class="active"><a href="products.html">Products</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+
+        <div class="container">
+            <div class="products-grid">
+                <!-- Sample Product Card -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://raw.githubusercontent.com/AG-Pixel-creater/Images/refs/heads/main/Adobe%20Express%20-%20file%20(1).png" alt="AG Password Manager">
+                        <div class="product-overlay">
+                            <button class="view-details">View Details</button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>AG | Password Manager</h3>
+                        <p class="product-description">AG Password Manager – The Ultimate Solution for Secure Password Storage! 🔐<br>
+                            Are you tired of forgetting passwords or struggling to keep them safe? AG Password Manager is here to make your life easier! Designed with security and simplicity in mind, this tool allows you to store and manage all your passwords in one place securely.<br>
+                            <br>
+                            🔥 Why Choose AG Password Manager?<br>
+                            ✅ Safe & Secure Storage – Keep all your passwords in one place without worrying about losing them.<br>
+                            ✅ Cloud-Based Access – Retrieve your passwords anytime, anywhere with Firebase Firestore integration.<br>
+                            ✅ Easy-to-Use Interface – No complicated setup, just a smooth and simple experience.<br>
+                            ✅ Import & Export Feature – Save time by backing up and restoring your passwords when needed.<br>
+                            ✅ User Authentication – Only you can access your saved credentials, ensuring full privacy.<br>
+                            ✅ Client-Side Encryption (Recommended) – Encrypt passwords before storage to enhance security.<br>
+                            <!-- <br> -->
+                            <!-- 🔒 Your Security Matters!<br>
+                            Without encryption, stored passwords could be vulnerable. That’s why client-side encryption is recommended to keep your data safe from hackers and unauthorized access. This ensures only you can decrypt and use your stored passwords. -->
+                            <br>
+                            🚀 Start Managing Your Passwords Securely Today!<br>
+                            Try AG Password Manager now and keep your passwords safe, organized, and accessible whenever you need them! Click here to get started: AG Password Manager.<br>
+                            <br>
+                            #SecureYourPasswords #AGPasswordManager #StaySafeOnline 🔑</p><br> 
+                        <div class="product-meta">
+                            <span class="product-category">Password Manager | Website</span>
+                            <div class="product-actions">
+                                <a href="https://ag-pixel-creater.github.io/AG-Password-Manager/" target="_blank" class="visit-btn">Visit Website</a>
+                                <span class="product-price">Free</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more product cards as needed -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 AG Electronics Pvt. Ltd.</p>
+    </footer>
+
+    <script type="module" src="js/home.js"></script>
+</body>
+</html>

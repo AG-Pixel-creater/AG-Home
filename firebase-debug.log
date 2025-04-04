@@ -1,0 +1,34 @@
+[debug] [2025-04-03T06:10:14.347Z] ----------------------------------------------------------------------
+[debug] [2025-04-03T06:10:14.350Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\HP\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init functions
+[debug] [2025-04-03T06:10:14.350Z] CLI Version:   14.1.0
+[debug] [2025-04-03T06:10:14.350Z] Platform:      win32
+[debug] [2025-04-03T06:10:14.350Z] Node Version:  v22.14.0
+[debug] [2025-04-03T06:10:14.351Z] Time:          Thu Apr 03 2025 11:10:14 GMT+0500 (Pakistan Standard Time)
+[debug] [2025-04-03T06:10:14.351Z] ----------------------------------------------------------------------
+[debug] 
+[warn] !  JSON error trying to load C:\Users\HP\OneDrive\Desktop\AG-Home\firebase-website\.firebaserc 
+[debug] [2025-04-03T06:10:14.545Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-04-03T06:10:14.546Z] > authorizing via signed-in user (ag.aliengamerz@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\HP\OneDrive\Desktop\AG-Home\firebase-website
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 

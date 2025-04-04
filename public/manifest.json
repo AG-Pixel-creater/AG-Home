@@ -1,0 +1,7 @@
+{
+    "name": "AG Admin Panel",
+    "short_name": "AG Admin",
+    "start_url": "/admin.html",
+    "display": "standalone",
+    "gcm_sender_id": "103953800507"
+}

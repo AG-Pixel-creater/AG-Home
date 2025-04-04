@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AG | Home</title>
+    <link rel="stylesheet" href="css/styles_1.css">
+    <link rel="icon" href="https://raw.githubusercontent.com/AG-Pixel-creater/Images/refs/heads/main/Screenshot_2025-04-03_063111-removebg-preview.png" type="logo.png">
+</head>
+<body data-theme="dark">
+    <!-- Add Loader -->
+    <div class="loader-container">
+        <div class="logo-loader">
+            <img src="https://raw.githubusercontent.com/AG-Pixel-creater/Images/refs/heads/main/Screenshot_2025-04-03_063111-removebg-preview.png" alt="Logo">
+            <div class="smoke-ring"></div>
+            <div class="smoke-ring" style="animation-delay: 0.5s"></div>
+            <div class="smoke-ring" style="animation-delay: 1s"></div>
+        </div>
+    </div>
+
+    <!-- Group all background content -->
+    <div class="background-content">
+        <header>
+            <div class="header-titles">
+                <h1>Welcome to AG | Home</h1>
+                <br>
+                <h1><span id="dynamicText">Tech Reveal's Here</span></h1>
+            </div>
+            <!-- <div align="center" class="logo-container">
+                <img src="https://raw.githubusercontent.com/AG-Pixel-creater/Images/refs/heads/main/Screenshot_2025-04-03_063111-removebg-preview.png" alt="Logo" class="logo" align="center"> 
+            </div> -->
+            <div class="header-controls">
+                <button id="settingsBtn" class="settings-btn" title="Settings">
+                    <svg width="20" height="20" viewBox="0 0 20 20">
+                        <path fill="currentColor" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"/>
+                    </svg>
+                </button>
+                <div id="userDisplay" class="user-display"></div>
+                <button id="logoutBtn" class="logout-btn">Logout</button>
+            </div>
+        </header>
+        <br>
+        <nav>
+            <ul>
+                <li class="active"><a href="home.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+        <br>
+        <div class="container">
+            <!-- Add your dashboard content here -->
+            <h2>Welcome to AG Electronics Pvt. Ltd.</h2>
+            <p>Your trusted partner in softwares mainly.</p>
+            <!-- Settings Modal -->
+            <div id="settingsModal" class="modal">
+                <div class="modal-content">
+                    <form class="settings-form">
+                        <div class="settings-section">
+                            <h3>Theme Settings</h3>
+                            <div class="theme-selector">
+                                <button type="button" class="theme-btn" data-theme="light">Light</button>
+                                <button type="button" class="theme-btn" data-theme="dark">Dark</button>
+                            </div>
+                        </div>
+                        <button type="button" id="closeSettings" class="close-btn">Close Settings</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 AG Electronics Pvt. Ltd.</p>
+    </footer>
+
+    <script type="module" src="js/home.js"></script>
+</body>
+</html>
