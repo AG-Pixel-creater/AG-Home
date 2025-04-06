@@ -1533,3 +1533,22 @@ h1, h2 {
     border: none;
     cursor: pointer;
 }
+
+#attractive-text{
+    font-size: 2rem;
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 1rem;
+    animation: fadeIn 1s ease-out, pulse 2s infinite;
+    text-shadow: #1a1a1a;
+    filter: drop-shadow(0 0 10px var(--accent-glow));
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    will-change: color, text-shadow;
+    background: linear-gradient(45deg, var(--accent-color), var(--accent-color-rgb));
+    -webkit-background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background: linear-gradient(45deg, #7f70ff, #00ffff);
+    background-clip: text;
+    color: transparent;
+} 

@@ -287,7 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Text animation for dynamic text
-const textPhrases = ["Tech Reveal's Here", "Software", "Search Engines", "AI(Artificial Intaligence)", "Future", "Make Imaginations True"];
+const textPhrases = ["Tech Reveal's Here", "Software", "Search Engines", "AI (Artificial Intelligence)", "Future", "Innovative Algorithms", "Machine Learning", "Smart Solutions", "Digital Transformation", "Technology Evolution", "Big Data", "Robotic Process Automation", "Blockchain", "Cybersecurity", "Augmented Reality (AR)", "Virtual Reality (VR)", "Internet of Things (IoT)"];
 let currentPhraseIndex = 0;
 const typingDelay = 100;
 const erasingDelay = 50;
