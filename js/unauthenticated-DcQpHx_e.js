@@ -1,0 +1,2 @@
+import{a as t}from"./index-BFb3Ss52.js";import{d as n,G as i,b as g}from"./firebase-config-2YIhq72v.js";const d=new i,r=new g;function a(){const o=document.getElementById("loginForm");o&&o.classList.remove("hidden"),s()}function s(){const o=document.getElementById("googleLogin"),e=document.getElementById("githubLogin");o&&o.addEventListener("click",()=>n(t,d)),e&&e.addEventListener("click",()=>n(t,r))}export{a as default};
+//# sourceMappingURL=unauthenticated-DcQpHx_e.js.map

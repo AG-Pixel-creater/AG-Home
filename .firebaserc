@@ -1,0 +1,20 @@
+firebase-website
+├── src
+│   ├── js
+│   │   ├── app.js
+│   │   ├── auth.js
+│   │   └── firebase-config.js
+│   ├── css
+│   │   └── styles.css
+│   └── index.html
+├── public
+│   └── index.html
+├── firebase.json
+├── .firebaserc
+{
+  "projects": {
+    "default": "ag-home-3db3f"
+  }
+}
+├── package.json
+└── README.md

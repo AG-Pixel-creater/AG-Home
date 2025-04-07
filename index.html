@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AG | Home</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/AG-Pixel-creater/Images/refs/heads/main/Screenshot_2025-04-03_063111-removebg-preview.png" type="image/png">
+    <script>
+        // Handle message port closure
+        window.addEventListener('error', function(e) {
+            if (e.message.includes('message port closed')) {
+                e.stopPropagation();
+                return;
+            }
+        }, true);
+
+        // Update redirect logic
+        const path = window.location.pathname;
+        if (path === '/AG-Home/' || path === '/AG-Home/index.html') {
+            try {
+                const auth = JSON.parse(localStorage.getItem('auth'));
+                if (auth && auth.isAuthenticated) {
+                    window.location.replace('/AG-Home/home.html');
+                }
+            } catch (e) {
+                console.warn('Auth check failed:', e);
+            }
+        }
+    </script>
+    <script>
+        // Check auth state immediately
+        const checkAuth = () => {
+            const auth = JSON.parse(localStorage.getItem('auth') || '{}');
+            if (auth.isAuthenticated) {
+                window.location.replace('/AG-Home/home.html');
+            }
+        };
+        
+        // Check on load and when auth state changes
+        window.addEventListener('load', checkAuth);
+        window.addEventListener('storage', checkAuth);
+    </script>
+  <script type="module" crossorigin src="/AG-Home/js/index-BFb3Ss52.js"></script>
+  <link rel="modulepreload" crossorigin href="/AG-Home/js/firebase-config-2YIhq72v.js">
+  <link rel="stylesheet" crossorigin href="/AG-Home/assets/css/index-Dg9Ug0Mg.css">
+</head>
+<body data-theme="dark">
+    <script>
+        // Redirect from /index.html to root
+        if (window.location.pathname.endsWith('index.html')) {
+            window.location.replace(window.location.pathname.replace('index.html', ''));
+        }
+        // Redirect from root to home.html if authenticated
+        else if (window.location.pathname === '/AG-Home/') {
+            const auth = JSON.parse(localStorage.getItem('auth'));
+            if (auth && auth.isAuthenticated) {
+                window.location.href = '/AG-Home/home.html';
+            }
+        }
+    </script>
+    <br><br><br>
+    <div class="container">
+        <h1>AG | Home </h1>
+        
+        <div class="header-controls">
+            <button id="settingsBtn" class="settings-btn" title="Settings">
+                <svg width="20" height="20" viewBox="0 0 20 20">
+                    <path fill="currentColor" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"/>
+                </svg>
+            </button>
+            <div id="userDisplay" class="user-display"></div>
+            <button id="logoutBtn" class="logout-btn hidden">Logout</button>
+        </div>
+        
+        <div class="auth-container-wrapper">
+            <div id="loginForm" class="login-container">
+                <h2>Welcome Back</h2>
+                <div class="auth-layout">
+                    <div class="auth-main">
+                        <form id="login">
+                            <div class="input-group">
+                                <input type="email" placeholder="Email" required>
+                            </div>
+                            <div class="input-group">
+                                <input type="password" placeholder="Password" required>
+                            </div>
+                            <button type="submit" class="login-btn">Login</button>
+                        </form>
+                        <p>Don't have an account? <button id="showSignup" type="button" class="text-button">Sign Up</button></p>
+                    </div>
+                    <div class="auth-divider">
+                        <span>or</span>
+                    </div>
+                    <div class="auth-social">
+                        <button id="googleLogin" class="social-btn google">
+                            <img src="https://cdn.cdnlogo.com/logos/g/35/google-icon.svg" alt="Google">
+                            Login with Google
+                        </button>
+                        <button id="githubLogin" class="social-btn github">
+                            <svg height="16" viewBox="0 0 16 16" width="16" class="github-icon">
+                                <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                            </svg>
+                            Sign in with GitHub
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="signupForm" class="signup-container hidden slide-out-right">
+                <h2>Create Account</h2>
+                <div class="auth-layout">
+                    <div class="auth-main">
+                        <form id="signup">
+                            <div class="input-group">
+                                <input type="email" placeholder="Email" required>
+                            </div>
+                            <div class="input-group">
+                                <input type="password" placeholder="Password" required>
+                            </div>
+                            <button type="submit" class="signup-btn">Create Account</button>
+                        </form>
+                        <p>Already have an account? <button id="showLogin" type="button" class="text-button">Login</button></p>
+                    </div>
+                    <div class="auth-divider">
+                        <span>or</span>
+                    </div>
+                    <div class="auth-social">
+                        <button id="googleSignup" class="social-btn google">
+                            <img src="https://cdn.cdnlogo.com/logos/g/35/google-icon.svg" alt="Google">
+                            Sign up with Google
+                        </button>
+                        <button id="githubSignup" class="social-btn github">
+                            <svg height="16" viewBox="0 0 16 16" width="16" class="github-icon">
+                                <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                            </svg>
+                            Sign up with GitHub
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="settingsModal" class="modal hidden">
+            <div class="modal-content">
+                <form class="settings-form">
+                    <div class="settings-section">
+                        <h3>Theme Settings</h3>
+                        <div class="theme-selector">
+                            <button type="button" class="theme-btn" data-theme="light">Light</button>
+                            <button type="button" class="theme-btn" data-theme="dark">Dark</button>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h3>Display Settings</h3>
+                        <div class="input-group">
+                            <label>
+                                <input type="checkbox" id="showEmail" checked>
+                                Show email in header
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button type="button" id="closeSettings" class="close-btn">Close Settings</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts with type="module" to support ES6 imports -->
+    <script nomodule>
+        document.body.innerHTML = '<div class="error-message">Your browser does not support ES modules. Please use a modern browser.</div>';
+    </script>
+</body>
+</html>
