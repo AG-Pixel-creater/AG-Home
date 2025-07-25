@@ -3,7 +3,7 @@ import { signOut } from 'firebase/auth';
 
 // Auth state management
 auth.onAuthStateChanged((user) => {
-    if (!user) window.location.href = '/index.html';
+    if (!user) window.location.href = '/';
     
     // Show admin link if admin user
     if (user.email === 'ag.aliengamerz@gmail.com') {
@@ -21,7 +21,7 @@ auth.onAuthStateChanged((user) => {
 document.getElementById('logoutBtn').addEventListener('click', async () => {
     try {
         await signOut(auth);
-        window.location.href = '/index.html';
+        window.location.href = '/';
     } catch (error) {
         console.error('Logout error:', error);
         alert('Logout failed: ' + error.message);
