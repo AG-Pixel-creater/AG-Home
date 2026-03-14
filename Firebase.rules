@@ -4,6 +4,7 @@ service cloud.firestore {
   match /databases/{database}/documents {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     function isAuthenticated() {
       return request.auth != null;
     }
@@ -33,11 +34,16 @@ service cloud.firestore {
     function isSuperAdmin() {
       return request.auth != null && (
 >>>>>>> 73f62c93d43060085308101d24f0cd6dbf5b4002
+=======
+    function isSuperAdmin() {
+      return request.auth != null && (
+>>>>>>> 73f62c93d43060085308101d24f0cd6dbf5b4002
         request.auth.token.email == 'ag.aliengamerz@gmail.com' ||
         request.auth.token.email == 'hamza.datashare@gmail.com'
       );
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     function hasMinimumRank(requiredRank) {
@@ -193,6 +199,8 @@ service cloud.firestore {
 =======
 =======
 >>>>>>> 73f62c93d43060085308101d24f0cd6dbf5b4002
+=======
+>>>>>>> 73f62c93d43060085308101d24f0cd6dbf5b4002
     function isAdmin() {
       return request.auth != null && (
         request.auth.token.email == 'ag.aliengamerz@gmail.com' ||
@@ -222,6 +230,9 @@ service cloud.firestore {
       allow read: if request.auth != null;
       allow write: if isSuperAdmin();
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 73f62c93d43060085308101d24f0cd6dbf5b4002
+=======
 >>>>>>> 73f62c93d43060085308101d24f0cd6dbf5b4002
 =======
 >>>>>>> 73f62c93d43060085308101d24f0cd6dbf5b4002

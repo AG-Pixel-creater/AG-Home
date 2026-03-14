@@ -1,6 +1,7 @@
 const functions = require('firebase-functions');
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 const express = require('express');
 const cors = require('cors');
 const admin = require('firebase-admin');
@@ -16,6 +17,11 @@ const ALLOWED_ADMIN_EMAILS = (process.env.ALLOWED_ADMIN_EMAILS || 'ag.aliengamer
     .split(',')
     .map(email => email.toLowerCase().trim());
 
+=======
+const admin = require('firebase-admin');
+admin.initializeApp();
+
+>>>>>>> 73f62c93d43060085308101d24f0cd6dbf5b4002
 =======
 const admin = require('firebase-admin');
 admin.initializeApp();
@@ -49,7 +55,11 @@ exports.notifyAdmin = functions.https.onCall(async (data, context) => {
             .collection('adminTokens')
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             .where('email', '==', ADMIN_EMAIL)
+=======
+            .where('email', '==', 'ag.aliengamerz@gmail.com')
+>>>>>>> 73f62c93d43060085308101d24f0cd6dbf5b4002
 =======
             .where('email', '==', 'ag.aliengamerz@gmail.com')
 >>>>>>> 73f62c93d43060085308101d24f0cd6dbf5b4002
@@ -119,7 +129,11 @@ exports.onNewMessage = functions.firestore
         const message = snap.data();
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 73f62c93d43060085308101d24f0cd6dbf5b4002
 =======
         
 >>>>>>> 73f62c93d43060085308101d24f0cd6dbf5b4002
@@ -144,6 +158,7 @@ exports.onNewMessage = functions.firestore
 
         return Promise.all(notifications);
     });
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -532,6 +547,8 @@ setUserRoleApp.post('/', async (req, res) => {
 });
 
 exports.setUserRoleCors = functions.https.onRequest(setUserRoleApp);
+=======
+>>>>>>> 73f62c93d43060085308101d24f0cd6dbf5b4002
 =======
 >>>>>>> 73f62c93d43060085308101d24f0cd6dbf5b4002
 =======
