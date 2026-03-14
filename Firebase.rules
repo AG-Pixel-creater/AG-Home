@@ -2,6 +2,7 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+<<<<<<< HEAD
     function isAuthenticated() {
       return request.auth != null;
     }
@@ -23,11 +24,16 @@ service cloud.firestore {
 
     function isOwner() {
       return isAuthenticated() && (
+=======
+    function isSuperAdmin() {
+      return request.auth != null && (
+>>>>>>> 73f62c93d43060085308101d24f0cd6dbf5b4002
         request.auth.token.email == 'ag.aliengamerz@gmail.com' ||
         request.auth.token.email == 'hamza.datashare@gmail.com'
       );
     }
 
+<<<<<<< HEAD
     function hasMinimumRank(requiredRank) {
       let rankLevels = {
         'OWNER': 1000,
@@ -178,6 +184,36 @@ service cloud.firestore {
       allow update: if hasMinimumRank('MODERATOR') &&
         request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'updatedAt', 'updatedBy']);
       allow delete: if hasMinimumRank('MODERATOR');
+=======
+    function isAdmin() {
+      return request.auth != null && (
+        request.auth.token.email == 'ag.aliengamerz@gmail.com' ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.token.email))
+      );
+    }
+
+    match /admins/{email} {
+      allow read: if request.auth != null;
+      allow create: if isSuperAdmin();
+      allow update: if isSuperAdmin();
+      allow delete: if isSuperAdmin() && email != 'ag.aliengamerz@gmail.com';
+    }
+
+    match /messages/{messageId} {
+      allow read, write: if isAdmin();
+    }
+
+    match /adminTokens/{tokenId} {
+      allow read: if request.auth != null && 
+        (isSuperAdmin() || resource.data.email == request.auth.token.email);
+      allow write: if request.auth != null && 
+        (isSuperAdmin() || tokenId == request.auth.uid);
+    }
+
+    match /superAdmins/{userId} {
+      allow read: if request.auth != null;
+      allow write: if isSuperAdmin();
+>>>>>>> 73f62c93d43060085308101d24f0cd6dbf5b4002
     }
   }
 }

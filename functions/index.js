@@ -1,4 +1,5 @@
 const functions = require('firebase-functions');
+<<<<<<< HEAD
 const express = require('express');
 const cors = require('cors');
 const admin = require('firebase-admin');
@@ -14,6 +15,11 @@ const ALLOWED_ADMIN_EMAILS = (process.env.ALLOWED_ADMIN_EMAILS || 'ag.aliengamer
     .split(',')
     .map(email => email.toLowerCase().trim());
 
+=======
+const admin = require('firebase-admin');
+admin.initializeApp();
+
+>>>>>>> 73f62c93d43060085308101d24f0cd6dbf5b4002
 exports.notifyAdmin = functions.https.onCall(async (data, context) => {
     try {
         // Check if user is authenticated
@@ -35,7 +41,11 @@ exports.notifyAdmin = functions.https.onCall(async (data, context) => {
         // Get admin tokens with error handling
         const adminSnapshot = await admin.firestore()
             .collection('adminTokens')
+<<<<<<< HEAD
             .where('email', '==', ADMIN_EMAIL)
+=======
+            .where('email', '==', 'ag.aliengamerz@gmail.com')
+>>>>>>> 73f62c93d43060085308101d24f0cd6dbf5b4002
             .get();
 
         if (adminSnapshot.empty) {
@@ -97,7 +107,11 @@ exports.onNewMessage = functions.firestore
     .document('messages/{messageId}')
     .onCreate(async (snap, context) => {
         const message = snap.data();
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 73f62c93d43060085308101d24f0cd6dbf5b4002
         // Get admin tokens
         const adminTokens = await admin.firestore()
             .collection('adminTokens')
@@ -116,6 +130,7 @@ exports.onNewMessage = functions.firestore
 
         return Promise.all(notifications);
     });
+<<<<<<< HEAD
 
 // Callable function to set a user's role. Runs with admin privileges.
 exports.setUserRole = functions.https.onCall(async (data, context) => {
@@ -502,3 +517,5 @@ setUserRoleApp.post('/', async (req, res) => {
 });
 
 exports.setUserRoleCors = functions.https.onRequest(setUserRoleApp);
+=======
+>>>>>>> 73f62c93d43060085308101d24f0cd6dbf5b4002
