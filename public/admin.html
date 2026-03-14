@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AG Admin Panel</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#000000">
+    
+    <!-- Add Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-messaging-compat.js"></script>
+    
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <nav>
+                <div class="user-info">
+                    Logged in as: <span id="userDisplay"></span>
+                </div>
+                <div id="superAdminLinks" class="hidden">
+                    <!-- Super Admin specific links -->
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Messages Section -->
+            <section id="messages-section" class="content-section active">
+                <h2>Messages</h2>
+                <div id="messagesList"></div>
+            </section>
+
+            <!-- Admin Management Section -->
+            <section id="admin-section" class="content-section">
+                <h2>Admin Management</h2>
+                <div id="adminList"></div>
+            </section>
+
+            <!-- Moderator Management Section -->
+            <div id="moderator-management-container"></div>
+        </main>
+    </div>
+
+    <!-- Load moderator management HTML -->
+    <script>
+        fetch('/admin-sections/moderator-management.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('moderator-management-container').innerHTML = html;
+            });
+    </script>
+
+    <!-- Load your JavaScript modules -->
+    <script type="module" src="/js/firebase-config.js"></script>
+    <script type="module" src="/js/admin.js"></script>
+</body>
+</html>

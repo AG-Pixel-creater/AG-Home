@@ -1,0 +1,183 @@
+// Firestore Rules
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function getUserRank() {
+      // Determine rank by checking (in order): users/{uid}, admins/{email}, moderators/{email}
+      return request.auth == null ? 'USER' :
+        // First try a user doc keyed by UID
+        (exists(/databases/$(database)/documents/users/$(request.auth.uid)) ?
+          get(/databases/$(database)/documents/users/$(request.auth.uid)).data.rank :
+          // Next, check admins collection keyed by email
+          (exists(/databases/$(database)/documents/admins/$(request.auth.token.email)) ?
+            (get(/databases/$(database)/documents/admins/$(request.auth.token.email)).data.isSuperAdmin ? 'SUPER_ADMIN' : 'ADMIN') :
+            // Next, check moderators collection keyed by email
+            (exists(/databases/$(database)/documents/moderators/$(request.auth.token.email)) ? 'MODERATOR' : 'USER')
+          )
+        );
+    }
+
+    function isOwner() {
+      return isAuthenticated() && (
+        request.auth.token.email == 'ag.aliengamerz@gmail.com' ||
+        request.auth.token.email == 'hamza.datashare@gmail.com'
+      );
+    }
+
+    function hasMinimumRank(requiredRank) {
+      let rankLevels = {
+        'OWNER': 1000,
+        'SUPER_ADMIN': 100,
+        'ADMIN': 80,
+        'MODERATOR': 50,
+        'USER': 10
+      };
+      
+      let userRank = getUserRank();
+      return isAuthenticated() && (
+        (rankLevels[userRank] >= rankLevels[requiredRank]) ||
+        (userRank == 'ADMIN' && requiredRank == 'MODERATOR') ||
+        isOwner()
+      );
+    }
+
+    function hasModeratorOrHigherRank() {
+      return hasMinimumRank('MODERATOR');
+    }
+
+    function isAdmin() {
+      return isOwner() || hasMinimumRank('ADMIN');
+    }
+
+    function isModeratorOrHigher() {
+      return isOwner() || hasModeratorOrHigherRank();
+    }
+
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated();
+      allow update: if
+        // Allow admins to manage moderators
+        (getUserRank() == 'ADMIN' &&
+         request.auth.uid != userId &&
+         request.resource.data.diff(resource.data).affectedKeys().hasOnly(['rank', 'updatedAt', 'updatedBy']) &&
+         resource.data.rank != 'ADMIN' &&
+         resource.data.rank != 'SUPER_ADMIN' &&
+         resource.data.rank != 'OWNER' &&
+         (request.resource.data.rank == 'MODERATOR' || request.resource.data.rank == 'USER')) ||
+        // Allow super admins to manage moderators and admins
+        (getUserRank() == 'SUPER_ADMIN' &&
+         request.auth.uid != userId &&
+         request.resource.data.diff(resource.data).affectedKeys().hasOnly(['rank', 'updatedAt', 'updatedBy']) &&
+         resource.data.rank != 'SUPER_ADMIN' &&
+         resource.data.rank != 'OWNER' &&
+         (request.resource.data.rank == 'MODERATOR' || 
+          request.resource.data.rank == 'ADMIN' ||
+          request.resource.data.rank == 'USER')) ||
+        // Allow owners full access except to other owners
+        (isOwner() &&
+         (resource.data.rank != 'OWNER' || resource.data.email == request.auth.token.email)) ||
+        // Allow users to update their own documents while preserving rank
+        (request.auth.uid == userId &&
+         (request.resource.data.rank == resource.data.rank || isOwner()) &&
+         request.resource.data.diff(resource.data).affectedKeys().hasAny(['updatedAt', 'updatedBy', 'email', 'emailAddress', 'lastSeen']));
+      allow delete: if 
+        // Only allow deletion by higher ranks
+        (getUserRank() == 'ADMIN' && resource.data.rank == 'MODERATOR') ||
+        (getUserRank() == 'SUPER_ADMIN' && 
+         (resource.data.rank == 'ADMIN' || resource.data.rank == 'MODERATOR')) ||
+        (isOwner() && resource.data.rank != 'OWNER');
+    }
+    
+    match /roleAssignments/{userId} {
+      allow read: if isAuthenticated() && 
+        (request.auth.uid == userId || hasMinimumRank('MODERATOR'));
+      allow write: if hasMinimumRank('ADMIN');
+    }
+    
+    match /controls/{controlId} {
+      allow read: if isAuthenticated();
+      allow write: if hasMinimumRank('ADMIN');
+    }
+    
+    match /products/{productId} {
+      allow read: if true;
+      allow write: if hasMinimumRank('MODERATOR');
+    }
+    
+    match /messages/{messageId} {
+      allow read: if hasMinimumRank('MODERATOR');
+      allow create: if isAuthenticated();
+      allow update, delete: if hasMinimumRank('MODERATOR');
+    }
+    
+    match /adminSettings/{settingId} {
+      allow read, write: if hasMinimumRank('ADMIN');
+    }
+    
+    match /adminTokens/{tokenId} {
+      allow read: if isAuthenticated() && 
+        (hasMinimumRank('ADMIN') || resource.data.email == request.auth.token.email);
+      allow create, update: if isAuthenticated() && 
+        (hasMinimumRank('ADMIN') || tokenId == request.auth.uid);
+      allow delete: if hasMinimumRank('ADMIN');
+    }
+
+    match /global_chat/{messageId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() &&
+        request.resource.data.senderId == request.auth.uid &&
+        request.resource.data.keys().hasAll(['text', 'senderId', 'senderName', 'timestamp']);
+    }
+
+    match /status/{userId} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && 
+        (request.auth.uid == userId ||
+         request.resource.data.keys().hasOnly(['online', 'lastSeen']));
+    }
+
+    match /admin_logs/{logId} {
+      allow read: if hasMinimumRank('MODERATOR');
+      allow create: if isAuthenticated() && 
+        request.resource.data.keys().hasAll(['action', 'timestamp', 'performedBy']) &&
+        request.resource.data.performedBy == request.auth.token.email;
+      allow update, delete: if false;
+    }
+
+    match /moderators/{moderatorId} {
+      allow read: if hasMinimumRank('MODERATOR');
+      allow create: if hasMinimumRank('ADMIN') &&
+        request.resource.data.keys().hasAll(['email', 'addedBy', 'addedAt', 'userId']);
+      allow delete: if hasMinimumRank('ADMIN');
+      allow update: if false;
+    }
+
+    match /admins/{adminId} {
+      allow read: if hasMinimumRank('ADMIN');
+      allow create: if hasMinimumRank('SUPER_ADMIN') &&
+        request.resource.data.keys().hasAll(['email', 'isSuperAdmin', 'addedBy', 'addedAt']);
+      allow delete: if (hasMinimumRank('SUPER_ADMIN') && 
+        (!resource.data.isSuperAdmin || isOwner()));
+      // Allow OWNER to update admin status. Permit small metadata fields
+      // alongside toggling `isSuperAdmin` so client can write updatedBy/updatedAt.
+      allow update: if isOwner() &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['isSuperAdmin', 'updatedAt', 'updatedBy']);
+    }
+
+    match /reports/{reportId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() &&
+        request.resource.data.keys().hasAll(['productId', 'productName', 'reason', 'reportedBy', 'timestamp', 'status']) &&
+        request.resource.data.reportedBy == request.auth.uid &&
+        request.resource.data.status == 'pending';
+      allow update: if hasMinimumRank('MODERATOR') &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'updatedAt', 'updatedBy']);
+      allow delete: if hasMinimumRank('MODERATOR');
+    }
+  }
+}

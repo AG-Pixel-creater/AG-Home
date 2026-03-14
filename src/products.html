@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AG | Products</title>
+    <link rel="stylesheet" href="css/styles_1.css">
+    <link rel="icon"
+        href="https://raw.githubusercontent.com/AG-Pixel-creater/Images/refs/heads/main/Screenshot_2025-04-03_063111-removebg-preview.png"
+        type="logo.png">
+</head>
+
+<body data-theme="dark">
+    <!-- Add Loader -->
+    <div class="loader-container">
+        <div class="logo-loader">
+            <img src="https://raw.githubusercontent.com/AG-Pixel-creater/Images/refs/heads/main/Screenshot_2025-04-03_063111-removebg-preview.png"
+                alt="Logo">
+            <div class="smoke-ring"></div>
+            <div class="smoke-ring" style="animation-delay: 0.5s"></div>
+            <div class="smoke-ring" style="animation-delay: 1s"></div>
+        </div>
+    </div>
+
+    <div class="background-content">
+        <header>
+            <div>
+                <h1 data-i18n="head.products">Our Products</h1>
+            </div>
+            <div class="header-controls" align="right">
+                <button id="settingsBtn" class="settings-btn" title="Settings">
+                    <svg width="20" height="20" viewBox="0 0 20 20">
+                        <path fill="currentColor"
+                            d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" />
+                    </svg>
+                </button>
+                <div class="user-info-wrapper">
+                    <div class="user-id-label" data-i18n="msg.userId">User ID</div>
+                    <div id="userDisplay" class="user-display"></div>
+                    <button id="logoutBtn" class="logout-btn" data-i18n="btn.logout">Logout</button>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="home.html" data-i18n="nav.home">Home</a></li>
+                <li><a href="about.html" data-i18n="nav.about">About Us</a></li>
+                <li class="active"><a href="products.html" data-i18n="nav.products">Products</a></li>
+                <li><a href="privacy.html" data-i18n="nav.privacy">Privacy</a></li>
+                <li><a href="contact.html" data-i18n="nav.contact">Contact Us</a></li>
+            </ul>
+        </nav>
+
+        
+        <!-- Shared Settings Modal -->
+        <div id="settingsModal" class="modal hidden">
+            <div class="modal-content">
+                <form class="settings-form">
+                    <div class="settings-section">
+                        <h3 data-i18n="settings.theme">Theme Settings</h3>
+                        <div class="theme-selector">
+                            <button type="button" class="theme-btn" data-theme="light" data-i18n="settings.themeLight">Light</button>
+                            <button type="button" class="theme-btn" data-theme="dark" data-i18n="settings.themeDark">Dark</button>
+                        </div>
+                    </div>
+                    <div class="settings-section">
+                        <h3 data-i18n="settings.viewMode">View Mode</h3>
+                        <div class="view-mode-selector">
+                            <button type="button" class="view-mode-btn" data-view="grid" title="Grid View" data-i18n="settings.viewModeGrid">🔲 Grid</button>
+                            <button type="button" class="view-mode-btn" data-view="list" title="List View" data-i18n="settings.viewModeList">☰ List</button>
+                        </div>
+                    </div>
+                    <div class="settings-section">
+                        <h3 data-i18n="settings.language">Language</h3>
+                        <div class="language-selector">
+                            <button type="button" class="language-btn" data-language="en" title="English" data-i18n="settings.languageEn">🇺🇸 English</button>
+                            <button type="button" class="language-btn" data-language="ur" title="Urdu" data-i18n="settings.languageUr">🇵🇰 اردو</button>
+                        </div>
+                    </div>
+                    <button type="button" id="closeSettings" class="close-btn" data-i18n="settings.close">Close Settings</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Filter Wheel Section -->
+        <div class="products-section">
+            <div class="filter-wheel-container">
+                <div class="filter-wheel-wrapper">
+                    <div class="filter-wheel" id="filterWheel">
+                        <div class="wheel-item" style="--index: 0"></div>
+                        <div class="wheel-item" style="--index: 1"></div>
+                        <div class="wheel-item" style="--index: 2"></div>
+                        <div class="wheel-item" style="--index: 3"></div>
+                        <div class="wheel-item" style="--index: 4"></div>
+                    </div>
+                    <div class="wheel-center"></div>
+                </div>
+                <div class="wheel-info">
+                    <p class="wheel-hint" data-i18n="product.wheelHint">🖱️ Mouse Wheel or Left Click to rotate | 🖱️ Right Click for all categories</p>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-container">
+                <div id="productsGrid" class="products-grid"></div>
+                <div id="loadingMsg" class="loading-msg" data-i18n="product.loadingProducts">Loading products...</div>
+            </div>
+        </div>
+
+        <!-- Category Modal -->
+        <div id="categoryModal" class="category-modal hidden">
+            <div class="category-modal-content">
+                <div class="category-modal-header">
+                    <h2 data-i18n="modal.selectCategory">Select Category</h2>
+                    <button class="category-modal-close">&times;</button>
+                </div>
+                <div id="categoryList" class="category-list"></div>
+            </div>
+        </div>
+
+        <!-- Report Product Modal -->
+        <div id="reportModal" class="modal hidden">
+            <div class="modal-content report-modal">
+                <div class="modal-header">
+                    <h2 data-i18n="product.report">Report Product</h2>
+                    <button type="button" onclick="closeReportModal()" class="close-modal-btn">&times;</button>
+                </div>
+                <form id="reportForm" onsubmit="submitReport(event)" class="report-form">
+                    <div class="form-group">
+                        <label for="reportReason" data-i18n="product.reportReason">Reason for Report:</label>
+                        <select id="reportReason" class="form-control" required>
+                            <option value="">-- Select a reason --</option>
+                            <option value="inappropriate">Inappropriate Content</option>
+                            <option value="fake">Fake/Counterfeit Product</option>
+                            <option value="misleading">Misleading Information</option>
+                            <option value="broken_link">Broken Link/Download</option>
+                            <option value="spam">Spam</option>
+                            <option value="offensive">Offensive Material</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reportDetails" data-i18n="product.reportDetails">Additional Details:</label>
+                        <textarea id="reportDetails" class="form-control" placeholder="Provide more information about your report..." rows="4"></textarea>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="submit" class="btn btn-danger" data-i18n="product.submitReport">Submit Report</button>
+                        <button type="button" onclick="closeReportModal()" class="cancel-btn" data-i18n="btn.cancel">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Product Details Modal -->
+        <div id="productDetailsModal" class="modal hidden">
+            <div class="modal-content product-details-modal">
+                <div class="modal-header">
+                    <h2 id="detailsProductName">Product Details</h2>
+                    <button type="button" onclick="closeProductDetailsModal()" class="close-modal-btn">&times;</button>
+                </div>
+                <div class="product-details-content">
+                    <div class="details-image-section">
+                        <img id="detailsProductImage" src="" alt="Product Image" class="details-product-image">
+                    </div>
+                    <div class="details-info-section">
+                        <div class="details-row">
+                            <span class="details-label" data-i18n="details.name">Name:</span>
+                            <span id="detailsName" class="details-value">-</span>
+                        </div>
+                        <div class="details-row">
+                            <span class="details-label" data-i18n="details.price">Price:</span>
+                            <span id="detailsPrice" class="details-value price">-</span>
+                        </div>
+                        <div class="details-row">
+                            <span class="details-label" data-i18n="details.category">Category:</span>
+                            <span id="detailsCategory" class="details-value">-</span>
+                        </div>
+                        <div class="details-row" id="subCategoryRow" style="display: none;">
+                            <span class="details-label" data-i18n="details.subcategory">Sub Category:</span>
+                            <span id="detailsSubCategory" class="details-value">-</span>
+                        </div>
+                        <div class="details-row" id="brandRow" style="display: none;">
+                            <span class="details-label" data-i18n="details.brand">Brand:</span>
+                            <span id="detailsBrand" class="details-value">-</span>
+                        </div>
+                        <div class="details-row" id="skuRow" style="display: none;">
+                            <span class="details-label" data-i18n="details.sku">SKU:</span>
+                            <span id="detailsSKU" class="details-value">-</span>
+                        </div>
+                        <div class="details-row" id="stockRow" style="display: none;">
+                            <span class="details-label" data-i18n="details.stock">Stock:</span>
+                            <span id="detailsStock" class="details-value">-</span>
+                        </div>
+                        <div class="details-row" id="ratingRow" style="display: none;">
+                            <span class="details-label" data-i18n="details.rating">Rating:</span>
+                            <span id="detailsRating" class="details-value">-</span>
+                        </div>
+                        <div class="details-row" id="descriptionRow" style="display: none;">
+                            <span class="details-label" data-i18n="details.description">Description:</span>
+                            <span id="detailsDescription" class="details-value description-text">-</span>
+                        </div>
+                        <div class="details-row" id="tagsRow" style="display: none;">
+                            <span class="details-label" data-i18n="details.tags">Tags:</span>
+                            <div id="detailsTags" class="details-value tags-container"></div>
+                        </div>
+                        <div class="details-row" id="specsRow" style="display: none;">
+                            <span class="details-label" data-i18n="details.specs">Specifications:</span>
+                            <div id="detailsSpecs" class="details-value specs-container"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="details-actions">
+                    <a id="productLinkBtn" href="#" target="_blank" class="btn btn-primary" style="display: none;" data-i18n="details.visit">
+                        🔗 Visit Product
+                    </a>
+                    <a id="downloadLinkBtn" href="#" download class="btn btn-success" style="display: none;">
+                        <span id="downloadBtnLabel" data-i18n="details.download">📥 Download</span>
+                    </a>
+                    <button type="button" onclick="openReportModal()" class="btn btn-warning" data-i18n="product.report">
+                        🚩 Report Product
+                    </button>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" onclick="closeProductDetailsModal()" class="cancel-btn" data-i18n="btn.close">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p></p>
+    </footer>
+
+    <script type="module" src="js/home.js"></script>
+    <script type="module" src="js/products.js"></script>
+</body>
+
+</html>

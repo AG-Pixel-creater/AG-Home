@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AG | Control Panel</title>
+    <link rel="stylesheet" href="css/styles_1.css">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon"
+        href="https://raw.githubusercontent.com/AG-Pixel-creater/Images/refs/heads/main/Screenshot_2025-04-03_063111-removebg-preview.png"
+        type="logo.png">
+</head>
+
+<body data-theme="dark">
+    <header>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="admin-layout">
+        <!-- Vertical Navigation -->
+        <nav class="admin-nav">
+            <div class="admin-nav-header">
+                <img src="https://raw.githubusercontent.com/AG-Pixel-creater/Images/refs/heads/main/Screenshot_2025-04-03_063111-removebg-preview.png"
+                    alt="AG Logo" class="admin-logo">
+                <h3>AG Home | Control Panel</h3>
+            </div>
+
+            <div class="nav-links">
+                <a href="#messages" class="nav-link active" data-section="messages">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" />
+                    </svg>
+                    Feedback Messages
+                </a>
+                <a href="#github" class="nav-link"
+                    onclick="window.open('https://github.com/AG-Pixel-creater/AG-Home', '_blank')">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                    GitHub
+                </a>
+                <a href="#firebase" class="nav-link"
+                    onclick="window.open('https://console.firebase.google.com/project/ag-home-3db3f/overview', '_blank')">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M3.89 15.672L6.255.461A.542.542 0 017.27.288l2.543 4.771zm16.794 3.692l-2.25-14a.54.54 0 00-.919-.295L3.316 19.365l7.856 4.427a1.621 1.621 0 001.588 0zM14.3 7.147l-1.82-3.482a.542.542 0 00-.96 0L3.53 17.984z" />
+                    </svg>
+                    Firebase Console
+                </a>
+
+                <a href="#moderator-management" class="nav-link" data-section="moderator-management">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V18c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05.02.01.03.03.04.04 1.14.83 1.93 1.94 1.93 3.41V18c0 .35-.07.69-.18 1H22c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5z" />
+                    </svg>
+                    Moderator Management
+                </a>
+
+                <a href="#admin-management" class="nav-link" data-section="admin-management">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V18c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05.02.01.03.03.04.04 1.14.83 1.93 1.94 1.93 3.41V18c0 .35-.07.69-.18 1H22c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5z" />
+                    </svg>
+                    Admin Management
+                </a>
+
+                <div id="superAdminLinks">
+                    <a href="#super-admin" class="nav-link" data-section="super-admin">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V18c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05.02.01.03.03.04.04 1.14.83 1.93 1.94 1.93 3.41V18c0 .35-.07.69-.18 1H22c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5z" />
+                        </svg>
+                        Super Admin Management
+                    </a>
+                </div>
+
+                <a href="#manage-all-ranks" class="nav-link" data-section="manage-all-ranks">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V18c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05.02.01.03.03.04.04 1.14.83 1.93 1.94 1.93 3.41V18c0 .35-.07.69-.18 1H22c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5z" />
+                    </svg>
+                    Manage All Ranks
+                </a>
+
+                <a href="#product-management" class="nav-link" data-section="product-management">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
+                    </svg>
+                    Product Management
+                </a>
+
+                <a href="#product-reports" class="nav-link" data-section="product-reports">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" />
+                    </svg>
+                    Product Reports
+                </a>
+
+                <a href="#chats" class="nav-link" data-section="chats">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" />
+                    </svg>
+                    Chats
+                </a>
+
+                <a href="#owner" class="nav-link" data-section="owner">
+                    <svg width="24" height="24" viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M40,50 L60,30 L80,50 L100,30 L120,50 L140,30 L160,50 L160,100 L40,100 Z" fill="#FFD700"
+                            stroke="#D4AF37" stroke-width="2" />
+                        <circle cx="60" cy="40" r="8" fill="#FF0000" />
+                        <circle cx="100" cy="30" r="10" fill="#0000FF" />
+                        <circle cx="140" cy="40" r="8" fill="#FF0000" />
+                        <polygon points="50,50 60,30 70,50" fill="#FFD700" stroke="#D4AF37" stroke-width="1" />
+                        <polygon points="90,50 100,30 110,50" fill="#FFD700" stroke="#D4AF37" stroke-width="1" />
+                        <polygon points="130,50 140,30 150,50" fill="#FFD700" stroke="#D4AF37" stroke-width="1" />
+                    </svg>
+                    Owner
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="admin-content">
+            <header>
+                <div>
+                    <h1>Control Panel</h1>
+                </div>
+                <div class="header-controls">
+                    <div class="user-info-wrapper">
+                        <div class="user-id-label" data-i18n="msg.userId">User ID</div>
+                        <div id="userDisplay" class="user-display"></div>
+                    </div>
+                    <button id="logoutBtn" class="logout-btn" data-i18n="btn.logout">Logout</button>
+                </div>
+            </header>
+
+            <!-- Content Sections -->
+            <div class="section-container">
+                <!-- Messages Section -->
+                <div id="messages-section" class="content-section active">
+                    <div class="messages-container">
+                        <h2>Contact Messages</h2>
+                        <div id="messagesList" class="messages-list">
+                            <!-- Messages will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin Management Section -->
+                <div id="admin-management-section" class="content-section hidden">
+                    <div class="admins-container">
+                        <div class="admins-header">
+                            <h2>Manage Admins</h2>
+                            <button type="button" onclick="openAddAdminModal()" class="add-admin-btn">
+                                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                                </svg>
+                                Add Admin
+                            </button>
+                        </div>
+                        <div class="admins-list" id="adminsList"></div>
+                    </div>
+                </div>
+
+                <!-- Moderator Management Section -->
+                <div id="moderator-management-section" class="content-section hidden">
+                    <div class="moderators-container">
+                        <div class="moderators-header">
+                            <h2>Manage Moderators</h2>
+                            <button type="button" onclick="openAddModeratorModal()" class="add-moderator-btn">
+                                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                                </svg>
+                                Add Moderator
+                            </button>
+                        </div>
+                        <div id="moderatorsList" class="moderators-list">
+                            <!-- Moderators will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Super Admin Section -->
+                <div id="super-admin-section" class="content-section hidden">
+                    <div class="super-admins-container">
+                        <div class="super-admins-header">
+                            <h2>Super Admin Management</h2>
+                            <button type="button" onclick="openAddSuperAdminModal()" class="add-super-admin-btn">
+                                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                                </svg>
+                                Add Super Admin
+                            </button>
+                        </div>
+                        <div id="superAdminsList" class="super-admins-list">
+                            <!-- Super Admins will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manage All Ranks Section -->
+                <div id="manage-all-ranks-section" class="content-section hidden">
+                    <div class="users-container">
+                        <div class="users-header">
+                            <h2>Manage All Ranks</h2>
+                        </div>
+                        <div class="owners-section">
+                            <h3>Owners</h3>
+                            <div id="ownersList" class="owners-list">
+                                <!-- Owners will be loaded here -->
+                            </div>
+                        </div>
+
+                        <div class="rank-lists">
+                            <div class="super-admin-list">
+                                <h3>Super Admins</h3>
+                                <div id="superAdminsListAll" class="super-admins-list">
+                                    <!-- Super Admins will be loaded here -->
+                                </div>
+                            </div>
+
+                            <div class="admin-list-container">
+                                <h3>Admins</h3>
+                                <div id="adminsListAll" class="admin-list">
+                                    <!-- Admins will be loaded here -->
+                                </div>
+                            </div>
+
+                            <div class="moderator-list-container">
+                                <h3>Moderators</h3>
+                                <div id="moderatorsListAll" class="moderators-list">
+                                    <!-- Moderators will be loaded here -->
+                                </div>
+                            </div>
+
+                            <div class="users-list-container">
+                                <h3>All Users</h3>
+                                <div id="usersList" class="users-list">
+                                    <!-- Users will be loaded here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chats Section -->
+                <div id="chats-section" class="content-section hidden">
+                    <div class="chats-container">
+                        <h2>Chats</h2>
+                        <div id="chatsList" class="chats-list"></div>
+                        <form id="chatForm" class="chat-form">
+                            <input id="chatInput" type="text" placeholder="Type a message..." autocomplete="off" />
+                            <button type="submit" class="send-btn">Send</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Owner Section -->
+                <div id="owner-section" class="content-section hidden">
+                    <div class="owner-container">
+                        <h2>Owner Controls</h2>
+                        <div id="ownerControls" class="owner-controls">
+                            <p>Advanced owner controls coming soon...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Management Section -->
+                <div id="product-management-section" class="content-section hidden">
+                    <div class="products-management-container">
+                        <div class="products-header">
+                            <h2>Product Management</h2>
+                            <button type="button" onclick="openAddProductModal()" class="add-product-btn">
+                                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                                </svg>
+                                Add New Product
+                            </button>
+                        </div>
+                        <div id="productsList" class="products-list">
+                            <!-- Products will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Reports Section -->
+                <div id="product-reports-section" class="content-section hidden">
+                    <div class="reports-container">
+                        <div class="reports-header">
+                            <h2>Product Reports</h2>
+                            <div class="reports-filters">
+                                <select id="reportStatusFilter" class="filter-select" onchange="filterReports()">
+                                    <option value="">All Status</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="reviewed">Reviewed</option>
+                                    <option value="resolved">Resolved</option>
+                                    <option value="dismissed">Dismissed</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="reportsList" class="reports-list">
+                            <!-- Reports will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Modal -->
+    <div id="adminModal" class="modal hidden">
+        <div class="modal-content admin-modal">
+            <h2>Admin Management</h2>
+            <div class="admin-modal-controls">
+                <button onclick="openAddAdminModal()" class="add-admin-btn">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                    </svg>
+                    Add New Admin
+                </button>
+            </div>
+            <div class="admin-list-container">
+                <div id="adminModalList" class="admin-list">
+                    <!-- Admins will be loaded here -->
+                </div>
+            </div>
+            <button id="closeAdminModal" class="close-btn">Close</button>
+        </div>
+    </div>
+
+    <!-- Add Admin Modal -->
+    <div id="addAdminModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Add New Admin</h2>
+            <form id="addAdminForm" class="admin-form">
+                <div class="form-group">
+                    <label for="adminEmail">Email</label>
+                    <input type="email" id="adminEmail" required placeholder="admin@example.com">
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="isSuperAdmin">
+                        Make Super Admin
+                    </label>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" onclick="closeAddAdminModal()" class="cancel-btn">Cancel</button>
+                    <button type="submit" class="submit-btn">Add Admin</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Moderator Modal -->
+    <div id="addModeratorModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Add New Moderator</h2>
+            <form id="addModeratorForm" class="moderator-form">
+                <div class="form-group">
+                    <label for="moderatorEmail">Email</label>
+                    <input type="email" id="moderatorEmail" required placeholder="moderator@example.com">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" onclick="closeAddModeratorModal()" class="cancel-btn">Cancel</button>
+                    <button type="submit" class="submit-btn">Add Moderator</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Super Admin Modal -->
+    <div id="addSuperAdminModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Add New Super Admin</h2>
+            <form id="addSuperAdminForm" class="super-admin-form">
+                <div class="form-group">
+                    <label for="superAdminEmail">Email</label>
+                    <input type="email" id="superAdminEmail" required placeholder="superadmin@example.com">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" onclick="closeAddSuperAdminModal()" class="cancel-btn">Cancel</button>
+                    <button type="submit" class="submit-btn">Add Super Admin</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div id="addProductModal" class="modal hidden">
+        <div class="modal-content product-modal">
+            <div class="modal-header">
+                <h2>Add New Product</h2>
+                <button type="button" onclick="closeAddProductModal()" class="close-modal-btn">&times;</button>
+            </div>
+            <form id="addProductForm" class="product-form">
+                <!-- Basic Info -->
+                <fieldset class="form-fieldset">
+                    <legend>Basic Information</legend>
+                    
+                    <!-- Product Names (English & Urdu) -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productNameEn">Product Name (English) *</label>
+                            <input type="text" id="productNameEn" required placeholder="e.g., Wireless Headphones">
+                        </div>
+                        <div class="form-group">
+                            <label for="productNameUr">Product Name (اردو) *</label>
+                            <input type="text" id="productNameUr" required placeholder="مثال: وائرلیس ہیڈفون" dir="rtl">
+                        </div>
+                    </div>
+                    
+                    <!-- Price -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productPrice">Price *</label>
+                            <input type="number" id="productPrice" required placeholder="99.99" step="0.01" min="0">
+                        </div>
+                    </div>
+
+                    <!-- Product Descriptions (English & Urdu) -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productDescriptionEn">Description (English)</label>
+                            <textarea id="productDescriptionEn" placeholder="Product description in English..." rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="productDescriptionUr">تفصیل (اردو)</label>
+                            <textarea id="productDescriptionUr" placeholder="اردو میں مصنوع کی تفصیل..." rows="3" dir="rtl"></textarea>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Categorization -->
+                <fieldset class="form-fieldset">
+                    <legend>Categorization</legend>
+                    
+                    <!-- Category (English & Urdu) -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productCategoryEn">Category (English) *</label>
+                            <input type="text" id="productCategoryEn" required placeholder="e.g., Electronics">
+                        </div>
+                        <div class="form-group">
+                            <label for="productCategoryUr">زمرہ (اردو) *</label>
+                            <input type="text" id="productCategoryUr" required placeholder="مثال: الیکٹرانکس" dir="rtl">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productSubCategory">Sub Category (Sub Type)</label>
+                        <input type="text" id="productSubCategory" placeholder="e.g., Audio">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productTags">Tags (comma-separated)</label>
+                        <input type="text" id="productTags" placeholder="e.g., wireless, audio, headphones">
+                    </div>
+                </fieldset>
+
+                <!-- Image -->
+                <fieldset class="form-fieldset">
+                    <legend>Product Image</legend>
+                    
+                    <div class="form-group">
+                        <label><input type="radio" name="imageType" value="url" checked> Image URL</label>
+                        <input type="url" id="productImageUrl" placeholder="https://example.com/image.jpg">
+                    </div>
+
+                    <div class="form-group">
+                        <label><input type="radio" name="imageType" value="upload"> Upload Image</label>
+                        <input type="file" id="productImageFile" accept="image/*">
+                        <small>Supported: JPG, PNG, WebP (Max 5MB)</small>
+                    </div>
+
+                    <div id="imagePreview" class="image-preview hidden">
+                        <img id="previewImg" src="" alt="Preview">
+                        <button type="button" onclick="clearImagePreview()" class="clear-preview-btn">Clear</button>
+                    </div>
+                </fieldset>
+
+                <!-- Additional Details -->
+                <fieldset class="form-fieldset">
+                    <legend>Additional Details</legend>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productSKU">SKU</label>
+                            <input type="text" id="productSKU" placeholder="e.g., WH-1000XM4">
+                        </div>
+                        <div class="form-group">
+                            <label for="productBrand">Brand</label>
+                            <input type="text" id="productBrand" placeholder="e.g., Sony">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productStock">Stock</label>
+                            <select id="productStock" name="stock">
+                                <option value="">Select...</option>
+                                <option value="-1">Unlimited</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                                <option value="custom">Custom</option>
+                            </select>
+                            <input type="number" id="productStockCustom" name="stockCustom" min="0" style="display: none; margin-top: 0.5rem;" placeholder="Enter custom number">
+                        </div>
+                        <div class="form-group">
+                            <label for="productRating">Rating</label>
+                            <input type="number" id="productRating" placeholder="4.5" min="0" max="5" step="0.1">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productSpecs">Specifications (JSON)</label>
+                        <textarea id="productSpecs" placeholder='{"color": "black", "weight": "250g"}' rows="3"></textarea>
+                    </div>
+                </fieldset>
+
+                <!-- Product Links -->
+                <fieldset class="form-fieldset">
+                    <legend>Product Links & Downloads</legend>
+                    
+                    <div class="form-group">
+                        <label for="productLink">Product Link (Purchase/Info)</label>
+                        <input type="url" id="productLink" placeholder="https://example.com/product">
+                        <small>Link where customers can buy or learn more</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productDownloadLink">Download Link</label>
+                        <input type="url" id="productDownloadLink" placeholder="https://example.com/file.zip">
+                        <small>Link to downloadable file (ZIP, PDF, etc.)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productDownloadLabel">Download Button Label</label>
+                        <input type="text" id="productDownloadLabel" placeholder="e.g., Download Files" value="Download">
+                        <small>Label shown on download button</small>
+                    </div>
+                </fieldset>
+
+                <div class="modal-actions">
+                    <button type="button" onclick="closeAddProductModal()" class="cancel-btn">Cancel</button>
+                    <button type="submit" class="submit-btn">Add Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Product Details Modal -->
+    <div id="productDetailsModal" class="modal hidden">
+        <div class="modal-content product-details-modal">
+            <div class="modal-header">
+                <h2 id="detailsProductName">Product Details</h2>
+                <button type="button" onclick="closeProductDetailsModal()" class="close-modal-btn">&times;</button>
+            </div>
+            <div class="product-details-content">
+                <div class="details-image-section">
+                    <img id="detailsProductImage" src="" alt="Product Image" class="details-product-image">
+                </div>
+                <div class="details-info-section">
+                    <div class="details-row">
+                        <span class="details-label" data-i18n="details.name">Name:</span>
+                        <span id="detailsName" class="details-value">-</span>
+                    </div>
+                    <div class="details-row">
+                        <span class="details-label" data-i18n="details.price">Price:</span>
+                        <span id="detailsPrice" class="details-value price">-</span>
+                    </div>
+                    <div class="details-row">
+                        <span class="details-label" data-i18n="details.category">Category:</span>
+                        <span id="detailsCategory" class="details-value">-</span>
+                    </div>
+                    <div class="details-row" id="subCategoryRow" style="display: none;">
+                        <span class="details-label" data-i18n="details.subcategory">Sub Category:</span>
+                        <span id="detailsSubCategory" class="details-value">-</span>
+                    </div>
+                    <div class="details-row" id="brandRow" style="display: none;">
+                        <span class="details-label" data-i18n="details.brand">Brand:</span>
+                        <span id="detailsBrand" class="details-value">-</span>
+                    </div>
+                    <div class="details-row" id="skuRow" style="display: none;">
+                        <span class="details-label" data-i18n="details.sku">SKU:</span>
+                        <span id="detailsSKU" class="details-value">-</span>
+                    </div>
+                    <div class="details-row" id="stockRow" style="display: none;">
+                        <span class="details-label" data-i18n="details.stock">Stock:</span>
+                        <span id="detailsStock" class="details-value">-</span>
+                    </div>
+                    <div class="details-row" id="ratingRow" style="display: none;">
+                        <span class="details-label" data-i18n="details.rating">Rating:</span>
+                        <span id="detailsRating" class="details-value">-</span>
+                    </div>
+                    <div class="details-row" id="descriptionRow" style="display: none;">
+                        <span class="details-label" data-i18n="details.description">Description:</span>
+                        <span id="detailsDescription" class="details-value description-text">-</span>
+                    </div>
+                    <div class="details-row" id="tagsRow" style="display: none;">
+                        <span class="details-label" data-i18n="details.tags">Tags:</span>
+                        <div id="detailsTags" class="details-value tags-container"></div>
+                    </div>
+                    <div class="details-row" id="specsRow" style="display: none;">
+                        <span class="details-label" data-i18n="details.specs">Specifications:</span>
+                        <div id="detailsSpecs" class="details-value specs-container"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="details-actions">
+                <button type="button" onclick="openEditProductModal()" class="btn btn-primary" id="editProductBtn" data-i18n="details.edit">
+                    ✏️ Edit Product
+                </button>
+                <a id="productLinkBtn" href="#" target="_blank" class="btn btn-primary" style="display: none;" data-i18n="details.visit">
+                    🔗 Visit Product
+                </a>
+                <a id="downloadLinkBtn" href="#" download class="btn btn-success" style="display: none;">
+                    <span id="downloadBtnLabel" data-i18n="details.download">📥 Download</span>
+                </a>
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" onclick="closeProductDetailsModal()" class="cancel-btn" data-i18n="btn.close">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Product Modal -->
+    <div id="editProductModal" class="modal hidden">
+        <div class="modal-content product-modal">
+            <div class="modal-header">
+                <h2>Edit Product</h2>
+                <button type="button" onclick="closeEditProductModal()" class="close-modal-btn">&times;</button>
+            </div>
+            <form id="editProductForm">
+                <fieldset>
+                    <legend>Basic Information</legend>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editProductNameEn">Product Name (English) *</label>
+                            <input type="text" id="editProductNameEn" name="nameEn" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editProductNameUr">Product Name (اردو) *</label>
+                            <input type="text" id="editProductNameUr" name="nameUr" required dir="rtl">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editProductPrice">Price (PKR) *</label>
+                            <input type="number" id="editProductPrice" name="price" min="0" step="0.01" required>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Categorization</legend>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editProductCategoryEn">Category (English) *</label>
+                            <input type="text" id="editProductCategoryEn" name="categoryEn" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editProductCategoryUr">زمرہ (اردو) *</label>
+                            <input type="text" id="editProductCategoryUr" name="categoryUr" required dir="rtl">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editProductSubCategory">Sub Category</label>
+                            <input type="text" id="editProductSubCategory" name="subCategory">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Image</legend>
+                    <div class="form-group">
+                        <label>Image Type:</label>
+                        <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="radio" name="editImageType" value="url" checked> URL
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="radio" name="editImageType" value="file"> Upload
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group" id="editImageUrlGroup">
+                        <label for="editProductImageUrl">Image URL</label>
+                        <input type="url" id="editProductImageUrl" name="imageUrl">
+                    </div>
+                    <div class="form-group" id="editImageFileGroup" style="display: none;">
+                        <label for="editProductImageFile">Choose Image</label>
+                        <input type="file" id="editProductImageFile" name="imageFile" accept="image/*">
+                    </div>
+                    <div id="editImagePreview" class="image-preview hidden">
+                        <img id="editPreviewImage" src="" alt="Preview">
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Additional Details</legend>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editProductSKU">SKU</label>
+                            <input type="text" id="editProductSKU" name="sku">
+                        </div>
+                        <div class="form-group">
+                            <label for="editProductBrand">Brand</label>
+                            <input type="text" id="editProductBrand" name="brand">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editProductStock">Stock</label>
+                            <select id="editProductStock" name="stock">
+                                <option value="">Select...</option>
+                                <option value="-1">Unlimited</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                                <option value="custom">Custom</option>
+                            </select>
+                            <input type="number" id="editProductStockCustom" name="stockCustom" min="0" style="display: none; margin-top: 0.5rem;" placeholder="Enter custom number">
+                        </div>
+                        <div class="form-group">
+                            <label for="editProductRating">Rating (0-5)</label>
+                            <input type="number" id="editProductRating" name="rating" min="0" max="5" step="0.1">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Product Links & Downloads</legend>
+                    <div class="form-group">
+                        <label for="editProductLink">Product Link (URL)</label>
+                        <input type="url" id="editProductLink" name="productLink" placeholder="https://example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="editDownloadLink">Download Link (URL)</label>
+                        <input type="url" id="editDownloadLink" name="downloadLink" placeholder="https://example.com/file.zip">
+                    </div>
+                    <div class="form-group">
+                        <label for="editDownloadLabel">Download Button Label</label>
+                        <input type="text" id="editDownloadLabel" name="downloadLabel" placeholder="Download File">
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Description & Details</legend>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editProductDescriptionEn">Description (English)</label>
+                            <textarea id="editProductDescriptionEn" name="descriptionEn" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="editProductDescriptionUr">تفصیل (اردو)</label>
+                            <textarea id="editProductDescriptionUr" name="descriptionUr" rows="3" dir="rtl"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="editProductTags">Tags (comma-separated)</label>
+                        <input type="text" id="editProductTags" name="tags" placeholder="tag1, tag2, tag3">
+                    </div>
+                    <div class="form-group">
+                        <label for="editProductSpecs">Specifications (JSON format)</label>
+                        <textarea id="editProductSpecs" name="specs" rows="4" placeholder='{"Color": "Red", "Size": "Large"}'></textarea>
+                    </div>
+                </fieldset>
+
+                <div class="modal-actions">
+                    <button type="button" onclick="closeEditProductModal()" class="cancel-btn">Cancel</button>
+                    <button type="submit" class="submit-btn">Update Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="js/control.js"></script>
+</body>
+
+</html>
