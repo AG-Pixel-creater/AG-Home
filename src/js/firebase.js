@@ -94,7 +94,6 @@ console.log("App config loaded from .env:", appConfig);
   export { 
     auth, 
     db,
-    appConfig,
     onAuthStateChanged, 
     signInWithEmailAndPassword, 
     createUserWithEmailAndPassword,
