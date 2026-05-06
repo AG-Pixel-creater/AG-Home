@@ -28,9 +28,5 @@ build/
 .firebaserc
 .firebaseignore
 
-# Logs
-logs/
-*.log
-
 # OS
 Thumbs.db
