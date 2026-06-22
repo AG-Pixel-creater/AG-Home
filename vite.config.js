@@ -2,11 +2,11 @@ import { defineConfig } from 'vite'
 
 export default defineConfig({
   base: '/AG-Home/', 
-  root: 'public',
+  root: 'src',
   build: {
     outDir: '../dist'
   },
-  publicDir: 'public',
+  publicDir: '../public',
   envDir: '..',  // Load .env from parent directory (project root)
   server: {
     middleware: [
