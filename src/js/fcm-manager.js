@@ -40,12 +40,19 @@ let swRegistration = null;
  */
 async function registerServiceWorker() {
   try {
-    const swPath = '/firebase-messaging-sw.js';
+    // Get the service worker path from environment configuration
+    // For GitHub Pages: /AG-Home/firebase-messaging-sw.js
+    // For local development: /firebase-messaging-sw.js
+    const baseUrl = window.location.pathname.startsWith('/AG-Home/') ? '/AG-Home' : '';
+    const swPath = baseUrl + '/firebase-messaging-sw.js';
+    const scope = baseUrl + '/';
+    
     console.log('[FCM] Registering service worker at:', swPath);
+    console.log('[FCM] Service worker scope:', scope);
 
     // Register the SW (do NOT unregister all existing SWs here — causes races)
     const registration = await navigator.serviceWorker.register(swPath, {
-      scope: '/',
+      scope: scope,
       updateViaCache: 'none'
     });
 

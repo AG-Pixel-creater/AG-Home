@@ -1,0 +1,169 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # Step 4: Create .env file from GitHub Secrets
+      - name: Create .env file from secrets
+        run: |
+          cat > .env << EOF
+          # Firebase Configuration
+          VITE_FIREBASE_API_KEY=${{ secrets.VITE_FIREBASE_API_KEY }}
+          VITE_FIREBASE_AUTH_DOMAIN=${{ secrets.VITE_FIREBASE_AUTH_DOMAIN }}
+          VITE_FIREBASE_PROJECT_ID=${{ secrets.VITE_FIREBASE_PROJECT_ID }}
+          VITE_FIREBASE_STORAGE_BUCKET=${{ secrets.VITE_FIREBASE_STORAGE_BUCKET }}
+          VITE_FIREBASE_MESSAGING_SENDER_ID=${{ secrets.VITE_FIREBASE_MESSAGING_SENDER_ID }}
+          VITE_FIREBASE_APP_ID=${{ secrets.VITE_FIREBASE_APP_ID }}
+          VITE_FIREBASE_MEASUREMENT_ID=${{ secrets.VITE_FIREBASE_MEASUREMENT_ID }}
+          VITE_FIREBASE_VAPID_KEY=${{ secrets.VITE_FIREBASE_VAPID_KEY }}
+          
+          # App Configuration
+          VITE_ADMIN_EMAIL=${{ secrets.VITE_ADMIN_EMAIL }}
+          VITE_ENVIRONMENT=${{ secrets.VITE_ENVIRONMENT }}
+          VITE_FIREBASE_SERVICE_WORKER_PATH=/AG-Home/firebase-messaging-sw.js
+          
+          # Firebase Functions (Optional - for emulator)
+          VITE_FUNCTIONS_REGION=${{ secrets.VITE_FUNCTIONS_REGION }}
+          VITE_FUNCTIONS_EMULATOR_HOST=${{ secrets.VITE_FUNCTIONS_EMULATOR_HOST }}
+          VITE_FUNCTIONS_EMULATOR_PORT=${{ secrets.VITE_FUNCTIONS_EMULATOR_PORT }}
+          EOF
+        env:
+          VITE_FIREBASE_API_KEY: ${{ secrets.VITE_FIREBASE_API_KEY }}
+          VITE_FIREBASE_AUTH_DOMAIN: ${{ secrets.VITE_FIREBASE_AUTH_DOMAIN }}
+          VITE_FIREBASE_PROJECT_ID: ${{ secrets.VITE_FIREBASE_PROJECT_ID }}
+          VITE_FIREBASE_STORAGE_BUCKET: ${{ secrets.VITE_FIREBASE_STORAGE_BUCKET }}
+          VITE_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.VITE_FIREBASE_MESSAGING_SENDER_ID }}
+          VITE_FIREBASE_APP_ID: ${{ secrets.VITE_FIREBASE_APP_ID }}
+          VITE_FIREBASE_MEASUREMENT_ID: ${{ secrets.VITE_FIREBASE_MEASUREMENT_ID }}
+          VITE_FIREBASE_VAPID_KEY: ${{ secrets.VITE_FIREBASE_VAPID_KEY }}
+          VITE_ADMIN_EMAIL: ${{ secrets.VITE_ADMIN_EMAIL }}
+          VITE_ENVIRONMENT: ${{ secrets.VITE_ENVIRONMENT }}
+          VITE_FUNCTIONS_REGION: ${{ secrets.VITE_FUNCTIONS_REGION }}
+          VITE_FUNCTIONS_EMULATOR_HOST: ${{ secrets.VITE_FUNCTIONS_EMULATOR_HOST }}
+          VITE_FUNCTIONS_EMULATOR_PORT: ${{ secrets.VITE_FUNCTIONS_EMULATOR_PORT }}
+
+      # Step 5: Verify .env file was created
+      - name: Verify environment file
+        run: |
+          if [ -f .env ]; then
+            echo "✓ .env file created successfully"
+            echo "Environment variables loaded:"
+            grep -v '^#' .env | grep -v '^$' | cut -d'=' -f1 | sort
+          else
+            echo "✗ .env file not found!"
+            exit 1
+          fi
+
+      # Step 6: Build the project with Vite
+      - name: Build project
+        run: npm run build
+        env:
+          # Pass environment variables to the build process
+          VITE_FIREBASE_API_KEY: ${{ secrets.VITE_FIREBASE_API_KEY }}
+          VITE_FIREBASE_AUTH_DOMAIN: ${{ secrets.VITE_FIREBASE_AUTH_DOMAIN }}
+          VITE_FIREBASE_PROJECT_ID: ${{ secrets.VITE_FIREBASE_PROJECT_ID }}
+          VITE_FIREBASE_STORAGE_BUCKET: ${{ secrets.VITE_FIREBASE_STORAGE_BUCKET }}
+          VITE_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.VITE_FIREBASE_MESSAGING_SENDER_ID }}
+          VITE_FIREBASE_APP_ID: ${{ secrets.VITE_FIREBASE_APP_ID }}
+          VITE_FIREBASE_MEASUREMENT_ID: ${{ secrets.VITE_FIREBASE_MEASUREMENT_ID }}
+          VITE_FIREBASE_VAPID_KEY: ${{ secrets.VITE_FIREBASE_VAPID_KEY }}
+          VITE_ADMIN_EMAIL: ${{ secrets.VITE_ADMIN_EMAIL }}
+          VITE_ENVIRONMENT: ${{ secrets.VITE_ENVIRONMENT }}
+          VITE_FIREBASE_SERVICE_WORKER_PATH: /AG-Home/firebase-messaging-sw.js
+          VITE_FUNCTIONS_REGION: ${{ secrets.VITE_FUNCTIONS_REGION }}
+          VITE_FUNCTIONS_EMULATOR_HOST: ${{ secrets.VITE_FUNCTIONS_EMULATOR_HOST }}
+          VITE_FUNCTIONS_EMULATOR_PORT: ${{ secrets.VITE_FUNCTIONS_EMULATOR_PORT }}
+
+      # Step 7: Verify build output
+      - name: Verify build artifacts
+        run: |
+          if [ -d "dist" ]; then
+            echo "✓ Build successful"
+            echo "Dist folder contents:"
+            ls -la dist/
+            echo ""
+            echo "HTML files in dist:"
+            find dist -name "*.html" -type f
+          else
+            echo "✗ Build failed - dist folder not found!"
+            exit 1
+          fi
+
+      # Step 8: Setup Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      # Step 9: Upload artifact to GitHub Pages
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'dist'
+
+      # Step 10: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      # Step 11: Deployment summary
+      - name: Deployment Summary
+        run: |
+          echo "==================================="
+          echo "✓ Deployment Completed Successfully"
+          echo "==================================="
+          echo "Repository: AG-Home"
+          echo "Branch: master"
+          echo "Deploy URL: https://ag-pixel-creater.github.io/AG-Home/"
+          echo ""
+          echo "Deployed Files:"
+          echo "- index.html (home page)"
+          echo "- home.html (home page)"
+          echo "- about.html (about page)"
+          echo "- products.html (products page)"
+          echo "- contact.html (contact page)"
+          echo "- privacy.html (privacy policy)"
+          echo "- control.html (control panel)"
+          echo "- 404.html (error handling)"
+          echo ""
+          echo "Firebase Services Active:"
+          echo "✓ Authentication"
+          echo "✓ Firestore Database"
+          echo "✓ Cloud Storage"
+          echo "✓ Cloud Functions"
+          echo "✓ Cloud Messaging"
