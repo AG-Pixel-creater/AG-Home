@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /
+
+Disallow: /control-panel.html
+
+Sitemap: Domain dalna hoga
