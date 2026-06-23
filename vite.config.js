@@ -1,24 +1,26 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from "vite";
+import { resolve } from "path";
 
 export default defineConfig({
-  base: '/AG-Home/', 
-  root: 'src',
+  base: "/AG-Home/",
+  root: "src",
+
   build: {
-    outDir: '../dist'
-  },
-  publicDir: '../public',
-  envDir: '..',  // Load .env from parent directory (project root)
-  server: {
-    middleware: [
-      // Handle service worker with correct MIME type
-      (req, res, next) => {
-        if (req.url.endsWith('firebase-messaging-sw.js')) {
-          res.setHeader('Content-Type', 'application/javascript');
-          // Also set Service-Worker-Allowed header to allow broader scope
-          res.setHeader('Service-Worker-Allowed', '/');
-        }
-        next();
+    outDir: "../dist",
+
+    rollupOptions: {
+      input: {
+        index: resolve(__dirname, "src/index.html"),
+        home: resolve(__dirname, "src/home.html"),
+        about: resolve(__dirname, "src/about.html"),
+        contact: resolve(__dirname, "src/contact.html"),
+        control: resolve(__dirname, "src/control.html"),
+        privacy: resolve(__dirname, "src/privacy.html"),
+        products: resolve(__dirname, "src/products.html")
       }
-    ]
-  }
-})
+    }
+  },
+
+  publicDir: "../public",
+  envDir: ".."
+});
