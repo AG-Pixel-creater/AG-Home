@@ -6,13 +6,13 @@ import { getFirestore } from 'firebase/firestore';
 
 // Firebase configuration - Load from .env file
 const firebaseConfig = {
-    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-    appId: import.meta.env.VITE_FIREBASE_APP_ID,
-    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID 
+    apiKey: "AIzaSyBfu4YI21vaAPeW6WbElRL56PHbxl6knb0",
+    authDomain: "ag-home-3db3f.firebaseapp.com",
+    projectId: "ag-home-3db3f",
+    storageBucket: "ag-home-3db3f.firebasestorage.app",
+    messagingSenderId: "384219186370",
+    appId: "1:384219186370:web:b6b69a39d6cc5affa8e75b",
+    measurementId: "G-5W214BQMNJ" 
 };
 
 // App configuration - Load from .env file
