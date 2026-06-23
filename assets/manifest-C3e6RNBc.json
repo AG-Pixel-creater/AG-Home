@@ -1,14 +1,15 @@
 {
   "name": "AG Admin Panel",
   "short_name": "AG Admin",
-  "start_url": "/admin.html",
+  "start_url": "/AG-Home/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
   "gcm_sender_id": "103953800507",
+  "scope": "/AG-Home/",
   "icons": [
     {
-      "src": "/favicon.ico",
+      "src": "/AG-Home/favicon.ico",
       "sizes": "64x64",
       "type": "image/x-icon"
     }
