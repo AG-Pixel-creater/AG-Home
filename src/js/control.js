@@ -1233,13 +1233,15 @@ onAuthStateChanged(auth, async (user) => {
             const isOwner = OWNER_EMAILS.includes(email);
             if (!isOwner && (!rank || rank.toUpperCase() === 'USER')) {
                 alert('Access denied: Control Panel is for staff only.');
-                try { window.location.href = '/'; } catch (e) { /* ignore */ }
+                const baseUrl = window.location.pathname.startsWith('/AG-Home/') ? '/AG-Home' : '';
+                try { window.location.href = baseUrl + '/'; } catch (e) { /* ignore */ }
                 return;
             }
         } catch (err) {
             console.warn('Role check failed, denying access as a safety measure:', err);
             alert('Access denied: could not verify permissions.');
-            try { window.location.href = '/'; } catch (e) { /* ignore */ }
+            const baseUrl = window.location.pathname.startsWith('/AG-Home/') ? '/AG-Home' : '';
+            try { window.location.href = baseUrl + '/'; } catch (e) { /* ignore */ }
             return;
         }
 

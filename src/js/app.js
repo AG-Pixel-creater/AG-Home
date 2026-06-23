@@ -154,9 +154,15 @@ function switchToLogin() {
 showSignupBtn.addEventListener('click', switchToSignup);
 showLoginBtn.addEventListener('click', switchToLogin);
 
+// Get base URL for GitHub Pages compatibility
+function getBaseUrl() {
+    return window.location.pathname.startsWith('/AG-Home/') ? '/AG-Home' : '';
+}
+
 // Add redirect function
 function redirectToHome() {
-    window.location.href = '/home.html';
+    const baseUrl = getBaseUrl();
+    window.location.href = baseUrl + '/home.html';
 }
 
 // Handle login form submission

@@ -182,10 +182,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const logoutBtn = document.getElementById('logoutBtn');
     const userDisplay = document.getElementById('userDisplay');
 
+    // Get base URL for GitHub Pages compatibility
+    const getBaseUrl = () => window.location.pathname.startsWith('/AG-Home/') ? '/AG-Home' : '';
+    
     // Auth state management (attach after DOM ready so UI elements exist)
     auth.onAuthStateChanged(async (user) => {
         if (!user) {
-            try { window.location.href = '/'; } catch (e) { /* ignore */ }
+            try { window.location.href = getBaseUrl() + '/'; } catch (e) { /* ignore */ }
             return;
         }
 
@@ -256,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
         logoutBtn.addEventListener('click', async () => {
             try {
                 await signOut(auth);
-                window.location.href = '/';
+                window.location.href = getBaseUrl() + '/';
             } catch (error) {
                 console.error('Logout error:', error);
                 alert('Logout failed: ' + (error.message || error));
